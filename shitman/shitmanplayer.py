@@ -1,9 +1,11 @@
+import cardhand
 
 
-class Player:
+class Player(cardhand.CardHand):
 
     def __init__(self):
-        self.player_hand = []
+        super().__init__()
+
 
 
 
