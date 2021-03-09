@@ -12,10 +12,10 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: ./manage.py test
+          command: python -m pytest -v Tests/test_shitman.py
           name: Test
 
 workflows:
   main:
     jobs:
-      - python -m pytest -v
+      - run-and-test
