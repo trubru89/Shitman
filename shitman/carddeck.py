@@ -21,7 +21,6 @@ class CardDeck:
             self.deck.pop(0)
             return drawn_card
         else:
-            print("out of cards")
             return False
 
     def get_deck(self):
@@ -31,5 +30,5 @@ class CardDeck:
         print(self.deck)
 
     def draw_random_card(self):
-        pass
+        return random.choice(self.deck)
 
