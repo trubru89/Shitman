@@ -13,7 +13,7 @@ def test_draw_whole_deck():
     cd.compile_deck()
     for card in range(len(cd.get_deck())):
         draw_card = cd.draw_from_deck()
-    assert draw_card is False
+    assert cd.draw_from_deck() is False
 
 
 def test_shuffle_deck():
