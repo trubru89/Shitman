@@ -1,5 +1,5 @@
 import random
-import card
+from shitman import card
 
 
 class CardDeck:
