@@ -30,3 +30,6 @@ class CardDeck:
     def show_deck(self):
         print(self.deck)
 
+    def draw_random_card(self):
+        pass
+
