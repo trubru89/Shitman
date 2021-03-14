@@ -26,5 +26,6 @@ class CardHand:
             self.card_to_remove = self.player_hand[self.pos_in_hand]
             self.player_hand.pop(self.card_to_remove)
             return self.card_to_remove
-
+        else:
+            return False
 
