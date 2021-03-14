@@ -44,7 +44,8 @@ def test_get_player_start_hand():
     gameboard_two = gameboard.GameBoard()
     player_start_hand = gameboard_two.get_player_start_hand()
     assert len(player_start_hand) == 3
-    card_in_hand = player_start_hand[0]
-    print(type(card_in_hand))
+    assert type(player_start_hand[0].get_suit()) is str
+    assert type(player_start_hand[0].get_value()) is int
+
 
 
