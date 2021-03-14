@@ -10,6 +10,7 @@ class GameBoard:
         self.number_of_ai = number_of_ai
         self.game_deck = None
         self.existing_players = []
+        self.temp_cards = []
 
     def set_up_players(self):
         for player in range(self.number_of_real_players):
@@ -23,7 +24,8 @@ class GameBoard:
         self.game_deck.shuffle_deck()
 
     def get_player_start_hand(self):
-        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
+        self.temp_cards = [self.game_deck.draw_from_deck() for draw_card in range(3)]
+        return self.temp_cards
 
     def get_player_turndown(self):
         return [self.game_deck.draw_from_deck() for draw_card in range(3)]
