@@ -23,13 +23,13 @@ class GameBoard:
         self.game_deck.shuffle_deck()
 
     def get_player_start_hand(self):
-        return [self.game_deck.draw_from_deck() for self.game_deck.draw_from_deck() in range(3)]
+        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
 
     def get_player_turndown(self):
-        return [self.game_deck.draw_from_deck() for self.game_deck.draw_from_deck() in range(3)]
+        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
 
     def get_player_turnup(self):
-        return [self.game_deck.draw_from_deck() for self.game_deck.draw_from_deck() in range(3)]
+        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
 
     def draw_from_game_deck(self):
         return self.game_deck.draw_from_deck()

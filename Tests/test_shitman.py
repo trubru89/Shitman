@@ -42,6 +42,9 @@ def test_set_up_players():
 
 def test_get_player_start_hand():
     gameboard_two = gameboard.GameBoard()
-    assert len(gameboard_two.get_player_start_hand()) == 3
+    player_start_hand = gameboard_two.get_player_start_hand()
+    assert len(player_start_hand) == 3
+    card_in_hand = player_start_hand[0]
+    print(type(card_in_hand))
 
 
