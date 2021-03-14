@@ -1,4 +1,4 @@
-import cardhand
+from shitman import cardhand
 
 
 class AiPlayer(cardhand.CardHand):

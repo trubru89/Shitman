@@ -1,6 +1,6 @@
-import carddeck
-import shitmanplayer
-import aishitman
+from shitman import carddeck
+from shitman import shitmanplayer
+from shitman import aishitman
 
 
 class GameBoard:
