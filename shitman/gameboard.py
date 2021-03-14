@@ -8,7 +8,7 @@ class GameBoard:
     def __init__(self, number_of_players=1, number_of_ai=1):
         self.number_of_real_players = number_of_players
         self.number_of_ai = number_of_ai
-        self.game_deck = None
+        self.game_deck = carddeck.CardDeck()
         self.existing_players = []
         self.temp_cards = []
 
@@ -20,12 +20,10 @@ class GameBoard:
         return self.existing_players
 
     def shuffle_board_deck(self):
-        self.game_deck = carddeck.CardDeck()
         self.game_deck.shuffle_deck()
 
     def get_player_start_hand(self):
-        self.temp_cards = [self.game_deck.draw_from_deck() for draw_card in range(3)]
-        return self.temp_cards
+        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
 
     def get_player_turndown(self):
         return [self.game_deck.draw_from_deck() for draw_card in range(3)]
