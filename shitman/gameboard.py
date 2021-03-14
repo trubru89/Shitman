@@ -9,6 +9,7 @@ class GameBoard:
         self.number_of_real_players = number_of_players
         self.number_of_ai = number_of_ai
         self.game_deck = carddeck.CardDeck()
+        self.game_deck.compile_deck()
         self.existing_players = []
         self.temp_cards = []
 
