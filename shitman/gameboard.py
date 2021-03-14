@@ -24,10 +24,11 @@ class GameBoard:
         self.game_deck.shuffle_deck()
 
     def get_player_start_hand(self):
-        self.temp_cards = []
-        for x in range(3):
-            self.temp_cards.append(self.game_deck.draw_from_deck())
-        return self.temp_cards
+        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
+        # self.temp_cards = []
+        # for x in range(3):
+        #     self.temp_cards.append(self.game_deck.draw_from_deck())
+        # return self.temp_cards
 
     def get_player_turndown(self):
         return [self.game_deck.draw_from_deck() for draw_card in range(3)]
