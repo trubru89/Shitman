@@ -26,10 +26,12 @@ def test_shuffle_deck():
     cd = carddeck.CardDeck()
     cd.compile_deck()
     new_deck = cd.get_deck()
-    print(new_deck)
+    for n_card in new_deck:
+        print(n_card.value)
     cd.shuffle_deck()
     shuffled_deck = cd.get_deck()
-    print(new_deck)
+    for n_card in new_deck:
+        print(n_card.value)
     for new_deck_card in new_deck:
         new_deck_values.append(new_deck_card.value)
     for shuffled_card in shuffled_deck:
