@@ -21,15 +21,17 @@ def test_draw_whole_deck():
 
 
 def test_shuffle_deck():
+    new_deck_values = []
+    shuffled_values = []
     cd = carddeck.CardDeck()
     cd.compile_deck()
     new_deck = cd.get_deck()
     cd.shuffle_deck()
     shuffled_deck = cd.get_deck()
     for new_deck_card in new_deck:
-        new_deck_values = new_deck_card.value
+        new_deck_values.append(new_deck_card.value)
     for shuffled_card in shuffled_deck:
-        shuffled_values = shuffled_card.value
+        shuffled_values.append(shuffled_card.value)
     assert new_deck_values != shuffled_values
 
 
@@ -51,9 +53,8 @@ def test_get_player_start_hand():
     gameboard_two = gameboard.GameBoard()
     player_start_hand = gameboard_two.get_player_start_hand()
     assert len(player_start_hand) == 3
-    for cards in range(0, player_start_hand):
-        assert type(player_start_hand[cards].get_suit()) is str
-        assert type(player_start_hand[cards].get_value()) is int
+    assert type(player_start_hand[0].get_suit()) is str
+    assert type(player_start_hand[0].get_value()) is int
 
 
 # Cardhand tests.
@@ -73,7 +74,7 @@ def test_start_hand():
     assert ch.number_of_cards_in_hand() == 3
     ch.add_card(card.Card("Heart", 5))
     assert ch.number_of_cards_in_hand() == 4
-    assert ch.show_lowest_card_in_hand() == card_one
+    assert ch.show_lowest_card_in_hand() == card_one.value
     ch.remove_card(card.Card("Heart", 5))
     assert ch.number_of_cards_in_hand() == 3
     ch.remove_card(card_three)
