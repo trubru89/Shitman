@@ -32,6 +32,7 @@ class CardHand:
     def number_of_cards_in_hand(self):
         return len(self.player_hand)
 
+    # This should be in aishitman
     def show_lowest_card_in_hand(self):
         values_in_hand = [card.get_value() for card in self.player_hand]
         suits_in_hand = [card.get_suit() for card in self.player_hand]
