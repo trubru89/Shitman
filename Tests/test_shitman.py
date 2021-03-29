@@ -79,7 +79,8 @@ def test_start_hand():
     assert ch.number_of_cards_in_hand() == 3
     ch.remove_card(card_three)
     assert ch.number_of_cards_in_hand() == 2
-    ch.remove_card(card_two)
+    assert ch.remove_card(card_two) == card_two
     assert ch.number_of_cards_in_hand() == 1
     ch.remove_card(card_one)
     assert ch.number_of_cards_in_hand() is False
+
