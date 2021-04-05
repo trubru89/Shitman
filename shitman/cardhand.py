@@ -23,9 +23,8 @@ class CardHand:
     def remove_card(self, card):
         if card in self.player_hand:
             self.pos_in_hand = self.player_hand.index(card)
-            self.card_to_remove = self.player_hand[self.pos_in_hand]
-            self.player_hand.pop(card)
-            return card
+            self.player_hand.pop(self.pos_in_hand)
+            return True
         else:
             return False
 
