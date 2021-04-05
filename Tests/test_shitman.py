@@ -78,5 +78,5 @@ def test_start_hand():
     ch.remove_card(ch.get_card_from_hand())
     assert ch.number_of_cards_in_hand() == 1
     ch.remove_card(ch.get_card_from_hand())
-    assert ch.number_of_cards_in_hand() is False
+    assert ch.number_of_cards_in_hand() == 0
 
