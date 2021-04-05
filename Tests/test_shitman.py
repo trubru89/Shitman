@@ -21,22 +21,15 @@ def test_draw_whole_deck():
 
 
 def test_shuffle_deck():
-    new_deck_values = []
+    sorted_deck_values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] * 4
     shuffled_values = []
     cd = carddeck.CardDeck()
     cd.compile_deck()
-    new_deck = cd.get_deck()
-    for n_card in new_deck:
-        print(n_card.value)
     cd.shuffle_deck()
     shuffled_deck = cd.get_deck()
-    for n_card in new_deck:
-        print(n_card.value)
-    for new_deck_card in new_deck:
-        new_deck_values.append(new_deck_card.value)
     for shuffled_card in shuffled_deck:
         shuffled_values.append(shuffled_card.value)
-    assert new_deck_values != shuffled_values
+    assert sorted_deck_values != shuffled_values
 
 
 # Card test
@@ -67,24 +60,23 @@ def test_get_player_start_hand():
 # Get smallest card value from hand
 # Remove a card until hand is empty
 def test_start_hand():
-    suits = ["Heart", "Spade", "Clove", "Diamond"]
-    values = [2, 3, 4]
-    card_one = card.Card("Heart", 2)
-    card_two = card.Card("Spade", 4)
-    card_three = card.Card("Clove", 7)
-    player_hand = [card_one, card_two, card_three]
+    cd = carddeck.CardDeck()
+    cd.compile_deck()
+    player_hand = []
+    for cards_in_start_hand in range(0, 3):
+        player_hand.append(cd.draw_from_deck())
     ch = cardhand.CardHand()
     ch.get_start_hand(player_hand)
     assert ch.number_of_cards_in_hand() == 3
-    ch.add_card(card.Card("Heart", 5))
+    ch.add_card(cd.draw_from_deck())
     assert ch.number_of_cards_in_hand() == 4
-    assert ch.show_lowest_card_in_hand() == card_one.value
-    ch.remove_card(card.Card("Heart", 5))
+    assert ch.show_lowest_card_in_hand() == 2
+    ch.remove_card(ch.get_card_from_hand())
     assert ch.number_of_cards_in_hand() == 3
-    ch.remove_card(card_three)
+    ch.remove_card(ch.get_card_from_hand())
     assert ch.number_of_cards_in_hand() == 2
-    assert ch.remove_card(card_two) == card_two
+    ch.remove_card(ch.get_card_from_hand())
     assert ch.number_of_cards_in_hand() == 1
-    ch.remove_card(card_one)
+    ch.remove_card(ch.get_card_from_hand())
     assert ch.number_of_cards_in_hand() is False
 

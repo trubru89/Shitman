@@ -22,8 +22,8 @@ class CardHand:
 
     def remove_card(self, card):
         if card in self.player_hand:
-            # self.pos_in_hand = self.player_hand.index(card)
-            # self.card_to_remove = self.player_hand[self.pos_in_hand]
+            self.pos_in_hand = self.player_hand.index(card)
+            self.card_to_remove = self.player_hand[self.pos_in_hand]
             self.player_hand.pop(card)
             return card
         else:
@@ -41,3 +41,11 @@ class CardHand:
         else:
             card_index = values_in_hand.index(min(values_in_hand))
             return min(values_in_hand)
+
+    # used to test remove card. Think of who to remove this from this class.
+    # This function should not have to be here
+    def get_card_from_hand(self):
+        if self.player_hand:
+            return self.player_hand[0]
+        else:
+            return False
