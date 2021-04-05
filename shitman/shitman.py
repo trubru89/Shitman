@@ -2,14 +2,21 @@ from shitman import gameboard
 from itertools import cycle
 
 
-# stage1 = game deck is not depleted. player1 can be in stage1 while player2 is in stage2
-# fill with functions
+# feels a bit waste? do i really want do
+def game_deck_is_empty():
+    pass
+
 
 game_dict = {
-  "stage1": "",
-  "stage2": "",
-
+    "card_deck_empty": game_deck_is_empty,
+    "player_hand_empty": "",
+    "player_cannot_play_card": "",
+    "player_turn_up_is_depleted": "",
+    "player_turn_down_is_depleted": ""
 }
+
+
+
 
 
 def init_a_game():

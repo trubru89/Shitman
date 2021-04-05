@@ -48,3 +48,12 @@ class CardHand:
             return self.player_hand[0]
         else:
             return False
+
+    def card_hand_is_depleted(self):
+        return False if self.player_hand else True
+
+    def turn_up_is_depleted(self):
+        return False if self.player_turn_up else True
+
+    def turn_down_is_depleted(self):
+        return False if self.player_turn_down else True
