@@ -8,6 +8,7 @@ class CardDeck:
         self.suits = ["Heart", "Spade", "Clove", "Diamond"]
         self.values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
         self.deck = []
+        self.drawn_card = None
 
     def compile_deck(self):
         self.deck = [card.Card(suit, value) for suit in self.suits for value in self.values]
@@ -17,9 +18,9 @@ class CardDeck:
 
     def draw_from_deck(self):
         if self.deck:
-            drawn_card = self.deck[0]
+            self.drawn_card = self.deck[0]
             self.deck.pop(0)
-            return drawn_card
+            return self.drawn_card
         else:
             return False
 

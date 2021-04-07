@@ -17,6 +17,8 @@ def test_draw_whole_deck():
     cd.compile_deck()
     for a_card in range(len(cd.get_deck())):
         draw_card = cd.draw_from_deck()
+        print(draw_card.suit)
+        print(draw_card.value)
     assert cd.draw_from_deck() is False
 
 
@@ -52,6 +54,15 @@ def test_get_player_start_hand():
     assert len(player_start_hand) == 3
     assert type(player_start_hand[0].get_suit()) is str
     assert type(player_start_hand[0].get_value()) is int
+
+
+def test_game_deck_draw_card():
+    gameboard_three = gameboard.GameBoard()
+    for game_card in range(0, 52):
+        card_from_deck = gameboard_three.draw_from_game_deck()
+        print(card_from_deck.suit)
+        print(card_from_deck.value)
+    assert gameboard_three.draw_from_game_deck() is False
 
 
 # Cardhand tests.

@@ -34,3 +34,6 @@ class GameBoard:
 
     def draw_from_game_deck(self):
         return self.game_deck.draw_from_deck()
+
+    def game_deck_is_depleted(self):
+        return self.game_deck.deck_is_depleted()
