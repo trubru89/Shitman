@@ -15,14 +15,8 @@ def test_card_deck_size():
 def test_draw_whole_deck():
     cd = carddeck.CardDeck()
     cd.compile_deck()
-    print(len(cd.get_deck()))
-    first_card = cd.draw_from_deck()
-    print(first_card.suit)
-    print(first_card.value)
     for a_card in range(len(cd.get_deck())):
         draw_card = cd.draw_from_deck()
-        print(draw_card.suit)
-        print(draw_card.value)
     assert cd.draw_from_deck() is False
 
 
@@ -62,11 +56,11 @@ def test_get_player_start_hand():
 
 def test_game_deck_draw_card():
     gameboard_three = gameboard.GameBoard()
+    assert gameboard_three.game_deck_is_depleted() is False
     for game_card in range(0, 52):
         card_from_deck = gameboard_three.draw_from_game_deck()
-        print(card_from_deck.suit)
-        print(card_from_deck.value)
     assert gameboard_three.draw_from_game_deck() is False
+    assert gameboard_three.game_deck_is_depleted() is True
 
 
 # Cardhand tests.
