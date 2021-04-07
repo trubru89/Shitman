@@ -15,6 +15,10 @@ def test_card_deck_size():
 def test_draw_whole_deck():
     cd = carddeck.CardDeck()
     cd.compile_deck()
+    print(len(cd.get_deck()))
+    first_card = cd.draw_from_deck()
+    print(first_card.suit)
+    print(first_card.value)
     for a_card in range(len(cd.get_deck())):
         draw_card = cd.draw_from_deck()
         print(draw_card.suit)
