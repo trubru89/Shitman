@@ -2,8 +2,7 @@ from shitman import gameboard
 from itertools import cycle
 
 
-# feels a bit waste? do i really want do
-def game_deck_is_empty():
+def game_deck_is_empty(game_deck):
     pass
 
 
@@ -14,9 +13,6 @@ game_dict = {
     "player_turn_up_is_depleted": "",
     "player_turn_down_is_depleted": ""
 }
-
-
-
 
 
 def init_a_game():
