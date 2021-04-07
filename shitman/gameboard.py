@@ -1,6 +1,7 @@
 from shitman import carddeck
 from shitman import shitmanplayer
 from shitman import aishitman
+from shitman import cardpile
 
 
 class GameBoard:
@@ -12,6 +13,7 @@ class GameBoard:
         self.game_deck.compile_deck()
         self.existing_players = []
         self.temp_cards = []
+        self.card_pile = cardpile.CardPile()
 
     def set_up_players(self):
         for player in range(self.number_of_real_players):
@@ -37,3 +39,13 @@ class GameBoard:
 
     def game_deck_is_depleted(self):
         return self.game_deck.deck_is_depleted()
+
+    def add_to_card_pile(self, card):
+        self.card_pile.add_to_card_pile(card)
+
+    def clear_card_pile(self):
+        self.card_pile.throw_card_pile()
+
+    def top_card_in_card_pile(self):
+        return self.card_pile.show_top_card_in_card_pile()
+

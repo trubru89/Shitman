@@ -2,12 +2,8 @@ from shitman import gameboard
 from itertools import cycle
 
 
-def game_deck_is_empty(game_deck):
-    pass
-
-
 game_dict = {
-    "card_deck_empty": game_deck_is_empty,
+    "card_deck_empty": "",
     "player_hand_empty": "",
     "player_cannot_play_card": "",
     "player_turn_up_is_depleted": "",
@@ -40,17 +36,25 @@ def player_turn_iterator(pool):
     return player
 
 
-def player_action(player):
-    pass
+# crap... rethink
+def player_action(player, board):
+    if board.game_deck_is_depleted():
+        if player.select_where_to_draw_card() is True:
+            print("Player: " + player + " has won!")
+    else:
+        pass
+
+    if player.is_real_player:
+        pass
 
 
 def main():
     board, players = init_a_game()
     players = who_goes_first(players)
-    player_action(players[0])  # First player turn
-    pool = cycle(players)  # To iterate over players
+    player_action(players[0], board)  # First player turn
     # loop here
-    player_action(player_turn_iterator(pool))
+    pool = cycle(players)  # To iterate over players
+    player_action(player_turn_iterator(pool), board)
 
 
 if __name__ == "__main__":
