@@ -24,9 +24,6 @@ class CardHand:
         if card in self.player_hand:
             self.pos_in_hand = self.player_hand.index(card)
             self.player_hand.pop(self.pos_in_hand)
-            return card
-        else:
-            return False
 
     def number_of_cards_in_hand(self):
         return len(self.player_hand)

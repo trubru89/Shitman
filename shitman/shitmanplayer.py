@@ -28,9 +28,9 @@ class Player(cardhand.CardHand):
             print(card.suit)
             print(card.value)
         self.pos_of_card_to_play = int(input("Chose card to play (1,2,3...): "))
-        self.card_to_play = self.player_hand((self.pos_of_card_to_play-1))
-        self.remove_card(self.card_to_play)
-        return self.card_to_play
+        card_to_play = self.player_hand((self.pos_of_card_to_play-1))
+        self.remove_card(card_to_play)
+        return card_to_play
 
     def select_card_from_turn_up(self, played_card=None):
         pass
