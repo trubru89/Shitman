@@ -2,6 +2,7 @@ from shitman import carddeck
 from shitman import shitmanplayer
 from shitman import aishitman
 from shitman import cardpile
+from shitman import discardpile
 
 
 class GameBoard:
@@ -14,6 +15,7 @@ class GameBoard:
         self.existing_players = []
         self.temp_cards = []
         self.card_pile = cardpile.CardPile()
+        self.discard_pile = discardpile.DiscardPile()
 
     def set_up_players(self):
         for player in range(self.number_of_real_players):
@@ -43,8 +45,8 @@ class GameBoard:
     def add_to_card_pile(self, card):
         self.card_pile.add_to_card_pile(card)
 
-    def clear_card_pile(self):
-        self.card_pile.throw_card_pile()
+    def discard_card_pile(self):
+        self.discard_pile.add_to_discard_pile(self.card_pile.throw_card_pile())
 
     def top_card_in_card_pile(self):
         return self.card_pile.show_top_card_in_card_pile()
