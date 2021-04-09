@@ -19,10 +19,10 @@ class GameBoard:
 
     def set_up_players(self):
         for player in range(self.number_of_real_players):
-            self.existing_players.append(shitmanplayer)
+            self.existing_players.append(shitmanplayer.Player)
         for ai in range(self.number_of_ai):
-            self.existing_players.append(aishitman)
-        return self.existing_players
+            self.existing_players.append(aishitman.AiPlayer)
+        return [player for player in self.existing_players]
 
     def shuffle_board_deck(self):
         self.game_deck.shuffle_deck()
