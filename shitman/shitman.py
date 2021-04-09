@@ -38,14 +38,17 @@ def player_turn_iterator(pool):
 
 # crap... rethink
 def player_action(player, board):
-    if board.game_deck_is_depleted():
+    if player.is_real_player:
         if player.select_where_to_draw_card() is True:
             print("Player: " + player + " has won!")
+        else:
+            pass
     else:
-        pass
-
-    if player.is_real_player:
-        pass
+        if board.game_deck_is_depleted():
+            if player.select_where_to_draw_card() is True:
+                print("Player: " + player + " has won!")
+        else:
+            pass
 
 
 def main():

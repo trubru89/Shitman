@@ -8,15 +8,15 @@ class Player(cardhand.CardHand):
         self.pos_of_card_to_play = None
         self.card_to_play = None
 
-    def select_where_to_draw_card(self):
+    def select_where_to_draw_card(self, game_deck_is_depleted, played_card_in_pile):
         if self.player_hand:
-            return self.select_card_to_play()
-        else:
+            return self.select_card_from_hand(played_card_in_pile)
+        elif self.player_hand:
             if self.player_turn_up:
-                return self.select_card_from_turn_up()
+                return self.select_card_from_turn_up(played_card_in_pile)
             else:
                 if self.player_turn_down:
-                    return self.select_card_from_turn_down()
+                    return self.select_card_from_turn_down(played_card_in_pile)
                 else:
                     return True
 
@@ -36,6 +36,9 @@ class Player(cardhand.CardHand):
         pass
 
     def select_card_from_turn_down(self, played_card=None):
+        pass
+
+    def select_card_from_hand(self, played_card=None):
         pass
 
     @staticmethod
