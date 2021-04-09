@@ -21,15 +21,16 @@ def test_draw_whole_deck():
 
 
 def test_shuffle_deck():
-    sorted_deck_values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] * 4
-    shuffled_values = []
+    # sorted_deck_values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14] * 4
+    # shuffled_values = []
     cd = carddeck.CardDeck()
     cd.compile_deck()
+    new_deck = cd.get_deck()
     cd.shuffle_deck()
     shuffled_deck = cd.get_deck()
-    for shuffled_card in shuffled_deck:
-        shuffled_values.append(shuffled_card.value)
-    assert sorted_deck_values != shuffled_values
+#    for shuffled_card in shuffled_deck:
+#        shuffled_values.append(shuffled_card.value)
+    assert new_deck != shuffled_deck
 
 
 # Card test

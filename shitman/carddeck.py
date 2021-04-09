@@ -18,14 +18,14 @@ class CardDeck:
 
     def draw_from_deck(self):
         if self.deck:
-            self.drawn_card = self.deck[0]
+            drawn_card = self.deck[0]
             self.deck.pop(0)
-            return self.drawn_card
+            return drawn_card
         else:
             return False
 
     def get_deck(self):
-        return self.deck
+        return [a_card for a_card in self.deck]
 
     def show_deck(self):
         print(self.deck)
