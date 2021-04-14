@@ -77,12 +77,12 @@ def test_start_hand():
     ch.add_card(cd.draw_from_deck())
     assert ch.number_of_cards_in_hand() == 4
     assert ch.show_lowest_card_in_hand() == 2
-    ch.remove_card(ch.get_card_from_hand())
+    ch.remove_card(0)
     assert ch.number_of_cards_in_hand() == 3
-    ch.remove_card(ch.get_card_from_hand())
+    ch.remove_card(0)
     assert ch.number_of_cards_in_hand() == 2
-    ch.remove_card(ch.get_card_from_hand())
+    ch.remove_card(0)
     assert ch.number_of_cards_in_hand() == 1
-    ch.remove_card(ch.get_card_from_hand())
+    ch.remove_card(0)
     assert ch.number_of_cards_in_hand() == 0
 
