@@ -50,4 +50,3 @@ class GameBoard:
 
     def top_card_in_card_pile(self):
         return self.card_pile.show_top_card_in_card_pile()
-

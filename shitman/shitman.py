@@ -39,7 +39,9 @@ def player_turn_iterator(pool):
 # crap... rethink
 def player_action(player, board):
     if player.is_real_player:
-        if player.select_where_to_draw_card() is True:
+        top_card = board.top_card_in_card_pile()
+        player_card = player.select_where_to_draw_card(top_card)
+        if player_card is False:
             print("Player: " + player + " has won!")
         else:
             pass

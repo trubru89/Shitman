@@ -20,10 +20,17 @@ class CardHand:
     def add_card(self, card):
         self.player_hand.append(card)
 
-    def remove_card(self, card):
-        if card in self.player_hand:
-            self.pos_in_hand = self.player_hand.index(card)
-            self.player_hand.pop(self.pos_in_hand)
+    def remove_card(self, card_index):
+        card_to_play = self.player_hand.pop(card_index)
+        return card_to_play
+
+    def remove_card_from_turn_up(self, card_index):
+        card_to_play = self.player_turn_up.pop(card_index)
+        return card_to_play
+
+    def remove_card_from_turn_down(self, card_index):
+        card_to_play = self.player_turn_down.pop(card_index)
+        return card_to_play
 
     def number_of_cards_in_hand(self):
         return len(self.player_hand)

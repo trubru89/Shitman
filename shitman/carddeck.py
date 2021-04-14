@@ -18,8 +18,7 @@ class CardDeck:
 
     def draw_from_deck(self):
         if self.deck:
-            drawn_card = self.deck[0]
-            self.deck.pop(0)
+            drawn_card = self.deck.pop(0)
             return drawn_card
         else:
             return False
@@ -30,8 +29,8 @@ class CardDeck:
     def show_deck(self):
         print(self.deck)
 
-    def draw_random_card(self):
-        return random.choice(self.deck)
+#    def draw_random_card(self):
+#        return random.choice(self.deck)
 
     def deck_is_depleted(self):
         return False if self.deck else True
