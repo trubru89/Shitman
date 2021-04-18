@@ -1,14 +1,9 @@
 from shitman import gameboard
 from itertools import cycle
+import sys
 
 
-game_dict = {
-    "card_deck_empty": "",
-    "player_hand_empty": "",
-    "player_cannot_play_card": "",
-    "player_turn_up_is_depleted": "",
-    "player_turn_down_is_depleted": ""
-}
+special_cards = [2, 10]
 
 
 def init_a_game():
@@ -36,18 +31,30 @@ def player_turn_iterator(pool):
     return player
 
 
-# crap... rethink
 def player_action(player, board):
     if player.is_real_player:
         top_card = board.top_card_in_card_pile()
         player_card = player.select_where_to_draw_card(top_card)
         if player_card is False:
             print("Player: " + player + " has won!")
+            sys.exit()
+        elif player_card.value in special_cards:
+            if player_card.value == 2:
+                board.add_to_card_pile(player_card)
+            elif player_card.value == 10:
+                board.add_to_card_pile(player_card)
+                board.card_pile.discard_card_pile()
+        elif player_card.value < top_card.value:
+            print("Player cannot put card {} {} over {} {}".format(player_card.suit, player_card.value,
+                                                                   top_card.suit, top_card.value))
+            player.add_card(player_card)
+            for a_card in board.card_pile.throw_card_pile():
+                player.add_card(a_card)
         else:
-            pass
+            board.add_to_card_pile(player_card)
     else:
         if board.game_deck_is_depleted():
-            if player.select_where_to_draw_card() is True:
+            if player.select_where_to_draw_card() is False:
                 print("Player: " + player + " has won!")
         else:
             pass
