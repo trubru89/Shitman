@@ -24,9 +24,10 @@ class GameBoard:
             self.existing_players.append(aishitman.AiPlayer)
         return [player for player in self.existing_players]
 
-    def shuffle_board_deck(self):
+    def shuffle_board_deck(self):  # pointless use game_deck shuffle insead
         self.game_deck.shuffle_deck()
 
+# Below 3 functions should be one function...
     def get_player_start_hand(self):
         return [self.game_deck.draw_from_deck() for draw_card in range(3)]
 

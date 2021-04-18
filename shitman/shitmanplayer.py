@@ -20,6 +20,7 @@ class Player(cardhand.CardHand):
                 else:
                     return False
 
+# below 3 should be 1 function
     def select_card_to_play(self, played_card=None):
         print("Played card is: " + played_card.suit + played_card.value) if played_card is not None \
             else print("No card is played ")
