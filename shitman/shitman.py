@@ -1,4 +1,4 @@
-from shitman import gameboard
+import gameboard
 from itertools import cycle
 import sys
 

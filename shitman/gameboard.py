@@ -1,8 +1,8 @@
-from shitman import carddeck
-from shitman import shitmanplayer
-from shitman import aishitman
-from shitman import cardpile
-from shitman import discardpile
+import carddeck
+import shitmanplayer
+import aishitman
+import cardpile
+import discardpile
 
 
 class GameBoard:
@@ -29,13 +29,13 @@ class GameBoard:
 
 # Below 3 functions should be one function...
     def get_player_start_hand(self):
-        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
+        return [self.game_deck.draw_from_deck() for self.draw_card in range(3)]
 
     def get_player_turndown(self):
-        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
+        return [self.game_deck.draw_from_deck() for self.draw_card in range(3)]
 
     def get_player_turnup(self):
-        return [self.game_deck.draw_from_deck() for draw_card in range(3)]
+        return [self.game_deck.draw_from_deck() for self.draw_card in range(3)]
 
     def draw_from_game_deck(self):
         return self.game_deck.draw_from_deck()

@@ -1,4 +1,4 @@
-from shitman import cardhand
+import cardhand
 
 
 class Player(cardhand.CardHand):
