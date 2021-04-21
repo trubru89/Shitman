@@ -4,9 +4,9 @@ from shitman.cardhand import CardHand
 class Player(CardHand):
 
     def __init__(self):
-        super().__init__()
         self.pos_of_card_to_play = None
         self.card_to_play = None
+        super().__init__()
 
     def select_where_to_draw_card(self, played_card_in_pile):
         if self.player_hand:
@@ -22,7 +22,7 @@ class Player(CardHand):
 
 # below 3 should be 1 function
     def select_card_to_play(self, played_card=None):
-        print("Played card is: " + played_card.suit + played_card.value) if played_card is not None \
+        print("Played card is: " + played_card.suit + str(played_card.value)) if played_card is not False \
             else print("No card is played ")
         print("Player hand is: ")
         for card in self.player_hand:

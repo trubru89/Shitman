@@ -32,7 +32,7 @@ def player_turn_iterator(pool):
 
 
 def player_action(player, board):
-    if player.is_real_player:
+    if player.is_real_player():
         top_card = board.top_card_in_card_pile()
         player_card = player.select_where_to_draw_card(top_card)
         if player_card is False:
@@ -44,7 +44,7 @@ def player_action(player, board):
             elif player_card.value == 10:
                 board.add_to_card_pile(player_card)
                 board.card_pile.discard_card_pile()
-        elif player_card.value < top_card.value:
+        elif player_card.value < top_card.value: # blir ju fan fel när cardpile är tom...
             print("Player cannot put card {} {} over {} {}".format(player_card.suit, player_card.value,
                                                                    top_card.suit, top_card.value))
             player.add_card(player_card)
@@ -52,12 +52,12 @@ def player_action(player, board):
                 player.add_card(a_card)
         else:
             board.add_to_card_pile(player_card)
-    else:
-        if board.game_deck_is_depleted():
-            if player.select_where_to_draw_card() is False:
-                print("Player: " + player + " has won!")
-        else:
-            pass
+#    else:
+#        if board.game_deck_is_depleted():
+#            if player.select_where_to_draw_card() is False:
+#                print("Player: " + player + " has won!")
+#        else:
+#            pass
 
 
 def main():
