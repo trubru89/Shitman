@@ -1,6 +1,6 @@
 import os
 from flask import Flask
-from shitman import shitman
+from shitman import shitman_the_game
 
 
 app = Flask(__name__)

@@ -1,5 +1,5 @@
 import random
-import card
+from shitman.card import Card
 
 
 class CardDeck:
@@ -11,7 +11,7 @@ class CardDeck:
         self.drawn_card = None
 
     def compile_deck(self):
-        self.deck = [card.Card(suit, value) for suit in self.suits for value in self.values]
+        self.deck = [Card(suit, value) for suit in self.suits for value in self.values]
 
     def shuffle_deck(self):
         random.shuffle(self.deck)

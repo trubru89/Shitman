@@ -1,8 +1,8 @@
-import carddeck
-import shitmanplayer
-import aishitman
-import cardpile
-import discardpile
+from shitman.carddeck import CardDeck
+from shitman.shitmanplayer import Player
+from shitman.aishitman import AiPlayer
+from shitman.cardpile import CardPile
+from shitman.discardpile import DiscardPile
 
 
 class GameBoard:
@@ -10,18 +10,18 @@ class GameBoard:
     def __init__(self, number_of_players=1, number_of_ai=1):
         self.number_of_real_players = number_of_players
         self.number_of_ai = number_of_ai
-        self.game_deck = carddeck.CardDeck()
+        self.game_deck = CardDeck()
         self.game_deck.compile_deck()
         self.existing_players = []
         self.temp_cards = []
-        self.card_pile = cardpile.CardPile()
-        self.discard_pile = discardpile.DiscardPile()
+        self.card_pile = CardPile()
+        self.discard_pile = DiscardPile()
 
     def set_up_players(self):
         for player in range(self.number_of_real_players):
-            self.existing_players.append(shitmanplayer.Player)
+            self.existing_players.append(Player)
         for ai in range(self.number_of_ai):
-            self.existing_players.append(aishitman.AiPlayer)
+            self.existing_players.append(AiPlayer)
         return [player for player in self.existing_players]
 
     def shuffle_board_deck(self):  # pointless use game_deck shuffle insead

@@ -1,7 +1,7 @@
-import cardhand
+from shitman.cardhand import CardHand
 
 
-class Player(cardhand.CardHand):
+class Player(CardHand):
 
     def __init__(self):
         super().__init__()

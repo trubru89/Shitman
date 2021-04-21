@@ -1,4 +1,4 @@
-import gameboard
+from shitman.gameboard import GameBoard
 from itertools import cycle
 import sys
 
@@ -7,7 +7,7 @@ special_cards = [2, 10]
 
 
 def init_a_game():
-    board = gameboard.GameBoard()
+    board = GameBoard()
     board.shuffle_board_deck()
     players = board.set_up_players()
     for player in players:

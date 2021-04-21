@@ -1,7 +1,7 @@
-import cardhand
+from shitman.cardhand import CardHand
 
 
-class AiPlayer(cardhand.CardHand):
+class AiPlayer(CardHand):
 
     def __init__(self):
         super().__init__()
