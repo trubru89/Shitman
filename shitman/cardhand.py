@@ -36,7 +36,7 @@ class CardHand:
         return len(self.player_hand)
 
     # This should be in aishitman
-    def show_lowest_card_in_hand(self):
+    def get_lowest_card_in_hand(self):
         values_in_hand = [card.get_value() for card in self.player_hand]
         suits_in_hand = [card.get_suit() for card in self.player_hand]
         if len(values_in_hand) == len(set(values_in_hand)):  # if true contains duplicates,

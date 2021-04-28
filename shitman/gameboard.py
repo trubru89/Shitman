@@ -7,7 +7,7 @@ from shitman.discardpile import DiscardPile
 
 class GameBoard:
 
-    def __init__(self, number_of_players=1, number_of_ai=1):
+    def __init__(self, number_of_players=2, number_of_ai=0):
         self.number_of_real_players = number_of_players
         self.number_of_ai = number_of_ai
         self.game_deck = CardDeck()
@@ -40,8 +40,8 @@ class GameBoard:
     def draw_from_game_deck(self):
         return self.game_deck.draw_from_deck()
 
-    def game_deck_is_depleted(self):
-        return self.game_deck.deck_is_depleted()
+    def game_deck_is_not_depleted(self):
+        return self.game_deck.deck_is_not_depleted()
 
     def add_to_card_pile(self, card):
         self.card_pile.add_to_card_pile(card)
@@ -50,4 +50,4 @@ class GameBoard:
         self.discard_pile.add_to_discard_pile(self.card_pile.throw_card_pile())
 
     def top_card_in_card_pile(self):
-        return self.card_pile.show_top_card_in_card_pile()
+        return self.card_pile.get_top_card_in_card_pile()

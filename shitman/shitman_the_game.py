@@ -20,7 +20,7 @@ def init_a_game():
 # Only checks who has the lowest card value and does not care about suites
 # So if two or more players has same value basically random goes first
 def who_goes_first(players):
-    cards = [player.show_lowest_card_in_hand() for player in players]
+    cards = [player.get_lowest_card_in_hand() for player in players]
     if cards.index(min(cards)) != 0:
         players[cards.index(min(cards))], players[0] = players[0], players[cards.index(min(cards))]
     return players
@@ -35,29 +35,34 @@ def player_action(player, board):
     if player.is_real_player():
         top_card = board.top_card_in_card_pile()
         player_card = player.select_where_to_draw_card(top_card)
-        if player_card is False:
-            print("Player: " + player + " has won!")
-            sys.exit()
+        if not player_card:
+            return player.player_name
         elif player_card.value in special_cards:
             if player_card.value == 2:
                 board.add_to_card_pile(player_card)
+                if board.game_deck_is_not_depleted():
+                    player.add_card(board.draw_from_game_deck())
+                # player goes again
             elif player_card.value == 10:
                 board.add_to_card_pile(player_card)
                 board.card_pile.discard_card_pile()
-        elif player_card.value < top_card.value: # blir ju fan fel när cardpile är tom...
+                if board.game_deck_is_not_depleted():
+                    player.add_card(board.draw_from_game_deck())
+                # player goes again
+        elif player_card.value < top_card.value:
             print("Player cannot put card {} {} over {} {}".format(player_card.suit, player_card.value,
                                                                    top_card.suit, top_card.value))
             player.add_card(player_card)
             for a_card in board.card_pile.throw_card_pile():
                 player.add_card(a_card)
         else:
+            print("Can play card")
             board.add_to_card_pile(player_card)
-#    else:
-#        if board.game_deck_is_depleted():
-#            if player.select_where_to_draw_card() is False:
-#                print("Player: " + player + " has won!")
-#        else:
-#            pass
+            if board.game_deck_is_not_depleted():
+                print("Game deck is not depleted")
+                player.add_card(board.draw_from_game_deck())
+            else:
+                print("Game deck is depleted")
 
 
 def main():

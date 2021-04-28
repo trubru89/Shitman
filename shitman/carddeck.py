@@ -31,5 +31,5 @@ class CardDeck:
 #    def draw_random_card(self):
 #        return random.choice(self.deck)
 
-    def deck_is_depleted(self):
-        return False if self.deck else True
+    def deck_is_not_depleted(self):
+        return self.deck

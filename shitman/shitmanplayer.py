@@ -6,6 +6,7 @@ class Player(CardHand):
     def __init__(self):
         self.pos_of_card_to_play = None
         self.card_to_play = None
+        self.player_name = input("What is the player name? ")
         super().__init__()
 
     def select_where_to_draw_card(self, played_card_in_pile):
