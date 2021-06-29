@@ -17,18 +17,27 @@ class CardHand:
     def get_player_turn_down(self, player_turn_down):
         self.player_turn_down = player_turn_down
 
-    def add_card(self, card):
+    def add_card_to_hand(self, card):
         self.player_hand.append(card)
 
-    def remove_card(self, card_index):
+    def show_card_hand(self):
+        return self.player_hand
+
+    def show_turn_up(self):
+        return self.player_turn_up
+
+    def show_turn_down(self):
+        return self.player_turn_down
+
+    def draw_card_from_hand(self, card_index):
         card_to_play = self.player_hand.pop(card_index)
         return card_to_play
 
-    def remove_card_from_turn_up(self, card_index):
+    def draw_card_from_turn_up(self, card_index):
         card_to_play = self.player_turn_up.pop(card_index)
         return card_to_play
 
-    def remove_card_from_turn_down(self, card_index):
+    def draw_card_from_turn_down(self, card_index):
         card_to_play = self.player_turn_down.pop(card_index)
         return card_to_play
 
@@ -53,11 +62,17 @@ class CardHand:
         else:
             return False
 
+    def card_distribution(self):
+        return [len(self.player_hand), len(self.player_turn_up), len(self.player_turn_down)]
+
     def card_hand_is_depleted(self):
-        return False if self.player_hand else True
+        return not self.player_hand
 
     def turn_up_is_depleted(self):
-        return False if self.player_turn_up else True
+        return not self.player_turn_up
 
     def turn_down_is_depleted(self):
-        return False if self.player_turn_down else True
+        return not self.player_turn_down
+
+    def player_is_out_of_cards(self):
+        return len(self.player_hand + self.player_turn_up + self.player_turn_down) == 0

@@ -51,3 +51,10 @@ class GameBoard:
 
     def top_card_in_card_pile(self):
         return self.card_pile.get_top_card_in_card_pile()
+
+    def get_card_pile(self):
+        return self.card_pile.throw_card_pile()
+
+    def player_draw_card(self, player):
+        if self.game_deck.deck_is_not_depleted():
+            player.add_card_to_hand(self.game_deck.draw_from_deck())

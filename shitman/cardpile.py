@@ -5,8 +5,8 @@ class CardPile:
 
     def __init__(self):
         self.card_pile = []
-        self.joker = Card("joker", 1)
-        self.top_card = self.joker
+        self.empty_card = Card("No suit", 0, "No rank")
+        self.top_card = self.empty_card
 
     def add_to_card_pile(self, card):
         self.card_pile.insert(0, card)
@@ -21,5 +21,5 @@ class CardPile:
             self.top_card = self.card_pile[0]
             return self.top_card
         else:
-            self.top_card = self.joker
+            self.top_card = self.empty_card
             return self.top_card

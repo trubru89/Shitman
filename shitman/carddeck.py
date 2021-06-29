@@ -7,11 +7,13 @@ class CardDeck:
     def __init__(self):
         self.suits = ["Heart", "Spade", "Clove", "Diamond"]
         self.values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-        self.deck = []  # should be compiled deck
+        self.ranks = ["two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "jack",
+                     "queen", "king", "ace"]
+        self.deck = []
         self.drawn_card = None
 
     def compile_deck(self):
-        self.deck = [Card(suit, value) for suit in self.suits for value in self.values]
+        self.deck = [Card(suit, value, rank) for suit in self.suits for value, rank in zip(self.values, self.ranks)]
 
     def shuffle_deck(self):
         random.shuffle(self.deck)

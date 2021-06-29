@@ -2,8 +2,10 @@ from shitman.gameboard import GameBoard
 from itertools import cycle
 import sys
 
-
-special_cards = [2, 10]
+# TO DO
+# player can play mutliple cards if same (only from hand)
+# Player cannot finnish on 2 or 10 or ace
+# if cards are played so that top 4 cards in card pile is same value  ard pile is discarded and player goes again
 
 
 def init_a_game():
@@ -26,52 +28,93 @@ def who_goes_first(players):
     return players
 
 
-def player_turn_iterator(pool):
-    player = next(pool)
-    return player
+def game_rules(player, board):
+    if player.is_real_player:
+        card_to_play = player_plays_card(player, board)
+        play_card(card_to_play, board, player)
 
 
-def player_action(player, board):
-    if player.is_real_player():
-        top_card = board.top_card_in_card_pile()
-        player_card = player.select_where_to_draw_card(top_card)
-        if not player_card:
-            return player.player_name
-        elif player_card.value in special_cards:
-            if player_card.value == 2:
-                board.add_to_card_pile(player_card)
-                if board.game_deck_is_not_depleted():
-                    player.add_card(board.draw_from_game_deck())
-                # player goes again
-            elif player_card.value == 10:
-                board.add_to_card_pile(player_card)
-                board.card_pile.discard_card_pile()
-                if board.game_deck_is_not_depleted():
-                    player.add_card(board.draw_from_game_deck())
-                # player goes again
-        elif player_card.value < top_card.value:
-            print("Player cannot put card {} {} over {} {}".format(player_card.suit, player_card.value,
-                                                                   top_card.suit, top_card.value))
-            player.add_card(player_card)
-            for a_card in board.card_pile.throw_card_pile():
-                player.add_card(a_card)
-        else:
-            print("Can play card")
-            board.add_to_card_pile(player_card)
-            if board.game_deck_is_not_depleted():
-                print("Game deck is not depleted")
-                player.add_card(board.draw_from_game_deck())
-            else:
-                print("Game deck is depleted")
+def play_card(card_to_play, board, player):
+    if card_to_play.rank == "ten":
+        board.add_to_card_pile(card_to_play)
+        board.discard_card_pile()
+        board.player_draw_card(player)
+        game_rules(player, board)
+    elif card_to_play.rank == "two":
+        board.add_to_card_pile(card_to_play)
+        board.player_draw_card(player)
+        game_rules(player, board)
+    elif card_to_play.value >= board.top_card_in_card_pile().value:
+        board.add_to_card_pile(card_to_play)
+        board.player_draw_card(player)
+    else:
+        board.add_to_card_pile(card_to_play)
+        for card in board.get_card_pile():
+            player.add_card_to_hand(card)
+
+
+def player_plays_card(player, board):
+    if player.player_is_out_of_cards():
+        print(player.get_player_name() + " Won!")
+        sys.exit(0)
+    else:
+        return player_select_card_pile(player, board)
+
+
+def player_select_card_pile(player, board):
+    if not player.card_hand_is_depleted():
+        return select_card_from_hand(player, board)
+    elif not player.turn_up_is_depleted():
+        return select_card_from_turn_up(player, board)
+    elif not player.turn_down_is_depleted:
+        return select_card_from_turn_down(player, board)
+
+
+def select_card_from_hand(player, board):
+    current_player_hand = player.show_card_hand()
+    print(player.player_name)
+    print("Card on the board is: " + board.top_card_in_card_pile().suit + " " + board.top_card_in_card_pile().rank)
+    for card in current_player_hand:
+        print(card.get_suit() + " " + card.get_rank())
+    while True:
+        card_index = int(input("Select card to play (1,2,3..): "))
+        if 0 < card_index <= len(current_player_hand):
+            break
+    return player.draw_card_from_hand(card_index-1)
+
+
+def select_card_from_turn_up(player, board):
+    current_player_turn_up = player.show_turn_up()
+    print(player.player_name)
+    print("Card on the board is: " + board.top_card_in_card_pile().suit + " " + board.top_card_in_card_pile().rank)
+    for card in current_player_turn_up:
+        print(card.get_suit() + " " + card.get_rank())
+    while True:
+        card_index = int(input("select card to play (1,2,3 ..): "))
+        if 0 < card_index <= len(current_player_turn_up):
+            break
+    return player.draw_card_from_turn_up(card_index-1)
+
+
+def select_card_from_turn_down(player, board):
+    current_player_turn_down = player.show_turn_down()
+    print(player.player_name)
+    print("Card on the board is: " + board.top_card_in_card_pile().suit + " " + board.top_card_in_card_pile().rank)
+    while True:
+        card_index = int(input("Select a card, you have {} left".format(len(current_player_turn_down))))
+        if 0 < card_index <= len(current_player_turn_down):
+            break
+    return player.draw_card_from_turn_down(card_index-1)
 
 
 def main():
     board, players = init_a_game()
     players = who_goes_first(players)
-    player_action(players[0], board)  # First player turn
-    # loop here
-    pool = cycle(players)  # To iterate over players
-    player_action(player_turn_iterator(pool), board)
+    player_cycle = cycle(players)
+    player = next(player_cycle)
+    while True:
+        game_rules(player, board)
+        player = next(player_cycle)
 
 
 if __name__ == "__main__":
