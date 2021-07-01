@@ -31,9 +31,10 @@ def test_shuffle_deck():
 
 # Card test
 def test_card():
-    one_card = card.Card("Heart", 2)
+    one_card = card.Card("Heart", 2, "two")
     assert one_card.get_suit() == "Heart"
     assert one_card.get_value() == 2
+    assert one_card.get_rank() == "two"
 
 
 # Gameboard tests
@@ -49,6 +50,7 @@ def test_get_player_start_hand():
     assert len(player_start_hand) == 3
     assert type(player_start_hand[0].get_suit()) is str
     assert type(player_start_hand[0].get_value()) is int
+    assert type(player_start_hand[0].get_rank()) is str
 
 
 def test_game_deck_draw_card():
